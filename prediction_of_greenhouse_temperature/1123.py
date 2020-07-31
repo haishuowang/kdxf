@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 img = cv2.imread(r'J:\test.png', 0)
 # 第二步：进行数据类型转换
 img_float = np.float32(img)
@@ -15,12 +14,12 @@ crow, ccol = int(img.shape[0] / 2), int(img.shape[1] / 2)  # 求得图像的中�
 
 # ccol
 
-n = 4
-a = [0, 10, 20, 30, ccol]
-
+a = [0, 1, 3, 5, 10, 20, 30, ccol]
+plt.figure(figsize=[10 * len(a), 10])
 plt.subplot(f'1{len(a)}1')
 plt.imshow(img, cmap='gray')
-for i in range(1, len(a) + 1):
+for i in range(1, len(a)):
+    print(i)
     print(a[i - 1], a[i])
 
     mask = np.zeros((img.shape[0], img.shape[1], 2), np.uint8)
@@ -37,7 +36,7 @@ for i in range(1, len(a) + 1):
 
     # 第九步：使用cv2.magnitude转化为空间域内
     img_idf = cv2.magnitude(img_idf[:, :, 0], img_idf[:, :, 1])
-    plt.subplot(f'1{len(a)}{i+1}')
+    plt.subplot(f'1{len(a)}{i + 1}')
     plt.imshow(img_idf, cmap='gray')
 # 第十步：进行绘图操作
 plt.show()
